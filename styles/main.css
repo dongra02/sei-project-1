@@ -19,8 +19,8 @@
 }
 
 .grid-item {
-  height: 5%;
-  width: 5%;
+  height: 10%;
+  width: 10%;
   border: 1px solid gray;  /* remove this eventually */
   background-color: green;
   text-align: center;

@@ -3,9 +3,9 @@ function init () {
 
   const cells = []
   const mines = []
-  const height = 20
-  const width = 20
-  const mineCount = 40
+  const height = 10
+  const width = 10
+  const mineCount = 15
   const cellCount = height * width
   const checkedCells = []
 
@@ -21,6 +21,7 @@ function init () {
       cells.push(newCell)
     }
     plantMines()
+    assignRegClick()
   }
 
   function plantMines() {
@@ -35,32 +36,37 @@ function init () {
     }
   }
 
-  function validNeighbs () {
-    
-
+  function validNeighbs (cell) {
+    cell = Number(cell)
+    const up = cell - width
+    const upLeft = up - 1
+    const upRight = up + 1
+    const right = cell + 1
+    const left = cell - 1
+    const down = cell + width
+    const downLeft = down - 1
+    const downRight = down + 1
+    let neighbors = [up, upLeft, upRight, right, left, down, downLeft, downRight].filter(neighbor => cells[neighbor])
+    if (Math.floor(cell / width) === 0) {
+      neighbors = neighbors.filter(neighbor => neighbor !== up && neighbor !== upLeft && neighbor !== upRight)
+    }
+    if (Math.floor(cell / width) === width - 1) {
+      neighbors = neighbors.filter(neighbor => neighbor !== down && neighbor !== downLeft && neighbor !== downRight)
+    }
+    if (cell % width === 0) {
+      neighbors = neighbors.filter(neighbor => neighbor !== left && neighbor !== upLeft && neighbor !== downLeft)
+    }
+    if (cell % width === width - 1) {
+      neighbors = neighbors.filter(neighbor => neighbor !== right && neighbor !== upRight && neighbor !== downRight)
+    }
+    return neighbors
   }
 
   function checkMines (cell) {
     cell = Number(cell)
-    const up = cell - width
-    console.log('up: ', up)
-    const upLeft = up - 1
-    console.log('upLeft: ', upLeft)
-    const upRight = up + 1
-    console.log('upRight: ', upRight)
-    const right = cell + 1
-    console.log('right: ', right)
-    const left = cell - 1
-    console.log('left: ', left)
-    const down = cell + width
-    console.log('down: ', down)
-    const downLeft = down - 1
-    console.log('downLeft: ', downLeft)
-    const downRight = down + 1
-    console.log('downRight: ', downRight)
-    const neighbors = [up, upLeft, upRight, right, left, down, downLeft, downRight].filter(neighbor => cells[neighbor])
+    const neighbors = validNeighbs(cell)
     let counter = 0
-    console.log('cell: ', cell, 'neighbors: ', neighbors)
+    checkedCells.push(cell)
     neighbors.forEach(neighbor => {
       checkedCells.push(neighbor)
       if (cells[neighbor].classList.contains('mine')) {
@@ -70,13 +76,19 @@ function init () {
     cells[cell].innerHTML = counter
   }
 
-  function handleClick (e) {
+  function regClick (e) {
     checkMines(e.target.id)
   }
-
-  createGrid()
   
-  cells.forEach(cell => cell.addEventListener('click', handleClick))
+  function assignRegClick () {
+    cells.forEach(cell => {
+      if (!cell.classList.contains('mine')) {
+        cell.addEventListener('click', regClick)
+      }
+    })
+  }
+  
+  createGrid()
 
   
 

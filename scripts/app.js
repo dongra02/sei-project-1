@@ -1,7 +1,3 @@
-
-
-
-
 function init () {
   console.log('JS is working.')
 
@@ -11,6 +7,7 @@ function init () {
   const width = 20
   const mineCount = 40
   const cellCount = height * width
+  const checkedCells = []
 
   const grid = document.querySelector('.grid')
 
@@ -38,21 +35,31 @@ function init () {
     }
   }
 
-  // recurse on each neighbor cell (not mine)
+  function validNeighbs () {
+    
+
+  }
 
   function checkMines (cell) {
     cell = Number(cell)
-    const up = cell - width //yes
-    const upLeft = up - 1 //yes
-    const upRight = up + 1 //yes
-    const right = cell + 1 //no
-    const left = cell - 1 // yes
-    const down = cell + width //no
-    const downLeft = down - 1 //no
-    const downRight = down + 1 //no
+    const up = cell - width
+    console.log('up: ', up)
+    const upLeft = up - 1
+    console.log('upLeft: ', upLeft)
+    const upRight = up + 1
+    console.log('upRight: ', upRight)
+    const right = cell + 1
+    console.log('right: ', right)
+    const left = cell - 1
+    console.log('left: ', left)
+    const down = cell + width
+    console.log('down: ', down)
+    const downLeft = down - 1
+    console.log('downLeft: ', downLeft)
+    const downRight = down + 1
+    console.log('downRight: ', downRight)
     const neighbors = [up, upLeft, upRight, right, left, down, downLeft, downRight].filter(neighbor => cells[neighbor])
     let counter = 0
-    const checkedCells = []
     console.log('cell: ', cell, 'neighbors: ', neighbors)
     neighbors.forEach(neighbor => {
       checkedCells.push(neighbor)

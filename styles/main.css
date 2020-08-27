@@ -24,6 +24,8 @@
   border: 1px solid gray;  /* remove this eventually */
   background-color: green;
   text-align: center;
+  font-size: 12px;
+  padding-top: 4px;
 }
 
 .mine {

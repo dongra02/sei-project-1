@@ -40,20 +40,22 @@ function init () {
 
   // recurse on each neighbor cell (not mine)
 
-  function checkMines (event) {
-    const cell = Number(event.target.id)
-    const up = cell - width
-    const upLeft = up - 1
-    const upRight = up + 1
-    const right = cell + 1
-    const left = cell - 1
-    const down = cell + width
-    const downLeft = down - 1
-    const downRight = down + 1
-    const neighbors = [up, upLeft, upRight, right, left, down, downLeft, downRight].filter(neighbor => !cells[neighbor] === false)
+  function checkMines (cell) {
+    cell = Number(cell)
+    const up = cell - width //yes
+    const upLeft = up - 1 //yes
+    const upRight = up + 1 //yes
+    const right = cell + 1 //no
+    const left = cell - 1 // yes
+    const down = cell + width //no
+    const downLeft = down - 1 //no
+    const downRight = down + 1 //no
+    const neighbors = [up, upLeft, upRight, right, left, down, downLeft, downRight].filter(neighbor => cells[neighbor])
     let counter = 0
-    console.log(neighbors)
+    const checkedCells = []
+    console.log('cell: ', cell, 'neighbors: ', neighbors)
     neighbors.forEach(neighbor => {
+      checkedCells.push(neighbor)
       if (cells[neighbor].classList.contains('mine')) {
         counter++
       }
@@ -61,9 +63,13 @@ function init () {
     cells[cell].innerHTML = counter
   }
 
+  function handleClick (e) {
+    checkMines(e.target.id)
+  }
+
   createGrid()
   
-  cells.forEach(cell => cell.addEventListener('click', checkMines))
+  cells.forEach(cell => cell.addEventListener('click', handleClick))
 
   
 

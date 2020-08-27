@@ -2,6 +2,10 @@
   box-sizing: border-box;
 }
 
+body {
+  background-image: url('../images/grass.jpg');
+}
+
 .header {
   text-align: center;
   height: 100px;

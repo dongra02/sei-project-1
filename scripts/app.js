@@ -108,10 +108,6 @@ function init () {
   
   createGrid()
 
-  
-
-
-
 }
 
 window.addEventListener('DOMContentLoaded', init)

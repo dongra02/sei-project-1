@@ -18,7 +18,7 @@ function init () {
     for (let i = 0; i < cellCount; i++) {
       const newCell = document.createElement('div')
       newCell.classList.add('grid-item')
-      newCell.setAttribute('cellNum', i)
+      newCell.setAttribute('id', i)
       newCell.innerHTML = i
       grid.appendChild(newCell)
       cells.push(newCell)
@@ -38,13 +38,10 @@ function init () {
     }
   }
 
-  
-
-  // function to check neighbors for mine class
   // recurse on each neighbor cell (not mine)
 
-  function checkMines (cell) {
-    console.log(cell)
+  function checkMines (event) {
+    const cell = Number(event.target.id)
     const up = cell - width
     const upLeft = up - 1
     const upRight = up + 1
@@ -65,7 +62,8 @@ function init () {
   }
 
   createGrid()
-  checkMines(6)
+  
+  cells.forEach(cell => cell.addEventListener('click', checkMines))
 
   
 

@@ -7,9 +7,11 @@ function init () {
   const width = 10
   const mineCount = 15
   const cellCount = height * width
-  const checkedCells = []
 
+  const resultDiv = document.querySelector('.result')
+  const resultText = document.querySelector('.result-text')
   const grid = document.querySelector('.grid')
+  
 
   function createGrid () {
     for (let i = 0; i < cellCount; i++) {
@@ -22,6 +24,7 @@ function init () {
     }
     plantMines()
     assignRegClick()
+    assignMineClick()
   }
 
   function plantMines() {
@@ -66,9 +69,7 @@ function init () {
     cell = Number(cell)
     const neighbors = validNeighbs(cell)
     let counter = 0
-    checkedCells.push(cell)
     neighbors.forEach(neighbor => {
-      checkedCells.push(neighbor)
       if (cells[neighbor].classList.contains('mine')) {
         counter++
       }
@@ -82,9 +83,26 @@ function init () {
   
   function assignRegClick () {
     cells.forEach(cell => {
-      if (!cell.classList.contains('mine')) {
+      if (!mines.includes(cell)) {
         cell.addEventListener('click', regClick)
       }
+    })
+  }
+
+  function youLose () {
+    resultText.innerHTML = 'You stepped in shit!'
+    resultDiv.style.display = 'block'
+    mines.forEach(cell => cell.removeEventListener('click', youLose))
+    cells.forEach(cell => {
+      if (!mines.includes(cell)) {
+        cell.removeEventListener('click', regClick)
+      }
+    })
+  }
+
+  function assignMineClick () {
+    mines.forEach(mine => {
+      mine.addEventListener('click', youLose)
     })
   }
   

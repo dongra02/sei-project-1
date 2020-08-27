@@ -2,11 +2,15 @@
   box-sizing: border-box;
 }
 
-.grid-contrainer {
-  width: 90vw;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+.header {
+  text-align: center;
+  height: 100px;
+}
+
+.result {
+  display: none;
+  text-align: center;
+  margin: 0 auto;
 }
 
 .grid {

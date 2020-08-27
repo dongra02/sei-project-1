@@ -1,0 +1,31 @@
+* {
+  box-sizing: border-box;
+}
+
+.grid-contrainer {
+  width: 90vw;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.grid {
+  display: flex;
+  flex-wrap: wrap;
+
+  height: 600px;
+  width: 600px;
+  margin: 0 auto;
+}
+
+.grid-item {
+  height: 5%;
+  width: 5%;
+  border: 1px solid gray;  /* remove this eventually */
+  background-color: green;
+  text-align: center;
+}
+
+.mine {
+  background-color: red;
+}

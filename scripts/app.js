@@ -5,11 +5,12 @@ function init () {
   const poos = []
   const height = 20
   const width = 20
-  const pooCount = 20
+  const pooCount = 10
   const cellCount = height * width
   const checkedCells = []
   let pooTimerInt = null
   let pooTimer = 0
+  let discoverCount = 0
   
 
   const gameInfoDiv = document.querySelector('.game-info')
@@ -72,6 +73,7 @@ function init () {
   }
 
   function checkPoos (cell) {
+    discoverCount++
     cell = Number(cell)
     checkedCells.push(cell)
     const neighbors = validNeighbs(cell)
@@ -90,6 +92,9 @@ function init () {
         }
       })
     }
+    if (discoverCount === cells.length - poos.length) {
+      youWon()
+    }
     return
   }
 
@@ -105,12 +110,8 @@ function init () {
     })
   }
 
-  function youLose () {
-    const pooCell = cells[Number(event.target.id)]
-    pooCell.classList.add('mine')
+  function endGame () {
     clearInterval(pooTimerInt)
-    console.log('You stepped in shit. Game Over.')
-    resultText.innerHTML = 'You lose!'
     poos.forEach(poo => cells[poo].removeEventListener('click', youLose))
     cells.forEach(cell => {
       cell.removeEventListener('click', pooTimerClick)
@@ -118,6 +119,20 @@ function init () {
         cell.removeEventListener('click', regClick)
       }
     })
+  }
+
+  function youWon () {
+    resultText.innerHTML = 'You Win!'
+    console.log('You won! Clean shoes...')
+    endGame()
+  }
+
+  function youLose () {
+    const pooCell = cells[Number(event.target.id)]
+    pooCell.classList.add('mine')
+    console.log('You stepped in shit. Game Over.')
+    resultText.innerHTML = 'You lose!'
+    endGame()
   }
 
   function assignPooClick () {

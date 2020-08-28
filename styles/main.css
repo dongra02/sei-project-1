@@ -1,5 +1,6 @@
 * {
   box-sizing: border-box;
+  letter-spacing: 1px;
 }
 
 body {
@@ -8,32 +9,45 @@ body {
 
 .header {
   text-align: center;
-  height: 100px;
+  height: 60px;
   font-family: 'Amatic SC', cursive;
-  font-size: 2em;
+  font-size: 1.8em;
   color: #ffffff;
-  letter-spacing: 1px;
   margin-bottom: 20px;
 }
 
-.result {
-  display: none;
+.game-info {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 5px auto;
+
+  font-family: 'Exo', sans-serif;
+  width: 500px;
   text-align: center;
-  margin: 0 auto;
+  line-height: 12px;
+  color: #ffffff;
+}
+
+.poo-count-div {
+  /* border: 1px solid #ffffff; */
+  /* width: 25%;
+  font-size: 14px;
+  color: #ffffff; */
 }
 
 .grid {
   display: flex;
   flex-wrap: wrap;
 
-  height: 600px;
-  width: 600px;
+  height: 400px;
+  width: 400px;
   margin: 0 auto;
 }
 
 .grid-item {
-  height: 10%;
-  width: 10%;
+  height: 5%;
+  width: 5%;
   border: 1px solid gray;  /* remove this eventually */
   background-color: green;
   text-align: center;

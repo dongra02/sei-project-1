@@ -2,40 +2,41 @@ function init () {
   console.log('JS is working.')
 
   const cells = []
-  const mines = []
-  const height = 10
-  const width = 10
-  const mineCount = 15
+  const poos = []
+  const height = 20
+  const width = 20
+  const pooCount = 30
   const cellCount = height * width
   const checkedCells = []
+  
 
-  const resultDiv = document.querySelector('.result')
+  const gameInfoDiv = document.querySelector('.game-info')
   const resultText = document.querySelector('.result-text')
   const grid = document.querySelector('.grid')
-  
+  const pooCountText = document.querySelector('.poo-count')
+  console.log(pooCountText)
 
   function createGrid () {
     for (let i = 0; i < cellCount; i++) {
       const newCell = document.createElement('div')
       newCell.classList.add('grid-item')
       newCell.setAttribute('id', i)
-      newCell.innerHTML = i
       grid.appendChild(newCell)
       cells.push(newCell)
     }
-    plantMines()
+    plantPoos()
     assignRegClick()
-    assignMineClick()
+    assignPooClick()
+    pooCountText.innerHTML = pooCount
   }
 
-  function plantMines() {
-    for (let i = 0; i < mineCount; i++) {
+  function plantPoos() {
+    for (let i = 0; i < pooCount; i++) {
       const randCellNum = Math.floor(Math.random() * cellCount)
-      if (cells[randCellNum].classList.contains('mine')) {
+      if (poos.includes(randCellNum)) {
         i--
       } else {
-        cells[randCellNum].classList.add('mine')
-        mines.push(cells[randCellNum])
+        poos.push(randCellNum)
       }
     }
   }
@@ -66,22 +67,22 @@ function init () {
     return neighbors
   }
 
-  function checkMines (cell) {
+  function checkPoos (cell) {
     cell = Number(cell)
     checkedCells.push(cell)
     const neighbors = validNeighbs(cell)
     let counter = 0
     neighbors.forEach(neighbor => {
-      if (cells[neighbor].classList.contains('mine')) {
+      if (poos.includes(neighbor)) {
         counter++
       }
     })
-    cells[cell].innerHTML = counter
+    cells[cell].innerHTML = counter > 0 ? counter : ''
     cells[cell].style.backgroundColor = 'white'
     if (counter < 1) {
       neighbors.forEach(neighbor => {
         if (!checkedCells.includes(neighbor)) {
-          checkMines(neighbor)
+          checkPoos(neighbor)
         }
       })
     }
@@ -89,31 +90,31 @@ function init () {
   }
 
   function regClick (e) {
-    checkMines(e.target.id)
+    checkPoos(e.target.id)
   }
   
   function assignRegClick () {
     cells.forEach(cell => {
-      if (!mines.includes(cell)) {
+      if (!poos.includes(cell)) {
         cell.addEventListener('click', regClick)
       }
     })
   }
 
   function youLose () {
-    resultText.innerHTML = 'You stepped in shit!'
-    resultDiv.style.display = 'block'
-    mines.forEach(cell => cell.removeEventListener('click', youLose))
+    console.log('You stepped in shit. Game Over.')
+    resultText.innerHTML = 'You lose!'
+    poos.forEach(poo => cells[poo].removeEventListener('click', youLose))
     cells.forEach(cell => {
-      if (!mines.includes(cell)) {
+      if (!poos.includes(cell.id)) {
         cell.removeEventListener('click', regClick)
       }
     })
   }
 
-  function assignMineClick () {
-    mines.forEach(mine => {
-      mine.addEventListener('click', youLose)
+  function assignPooClick () {
+    poos.forEach(poo => {
+      cells[poo].addEventListener('click', youLose)
     })
   }
   

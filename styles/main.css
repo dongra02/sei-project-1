@@ -49,5 +49,8 @@ body {
 }
 
 .mine {
-  background-color: red;
+  background-image: url('../images/poo.png');
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-color: #ffffff;
 }

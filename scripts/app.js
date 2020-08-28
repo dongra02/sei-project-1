@@ -7,6 +7,7 @@ function init () {
   const width = 10
   const mineCount = 15
   const cellCount = height * width
+  const checkedCells = []
 
   const resultDiv = document.querySelector('.result')
   const resultText = document.querySelector('.result-text')
@@ -67,6 +68,7 @@ function init () {
 
   function checkMines (cell) {
     cell = Number(cell)
+    checkedCells.push(cell)
     const neighbors = validNeighbs(cell)
     let counter = 0
     neighbors.forEach(neighbor => {
@@ -75,6 +77,16 @@ function init () {
       }
     })
     cells[cell].innerHTML = counter
+    cells[cell].style.backgroundColor = 'white'
+    if (counter < 1) {
+      console.log(cell)
+      neighbors.forEach(neighbor => {
+        if (!checkedCells.includes(neighbor)) {
+          checkMines(neighbor)
+        }
+      })
+    }
+    return
   }
 
   function regClick (e) {

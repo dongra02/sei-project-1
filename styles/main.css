@@ -29,13 +29,6 @@ body {
   color: #ffffff;
 }
 
-.poo-count-div {
-  /* border: 1px solid #ffffff; */
-  /* width: 25%;
-  font-size: 14px;
-  color: #ffffff; */
-}
-
 .grid {
   display: flex;
   flex-wrap: wrap;

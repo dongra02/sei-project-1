@@ -79,7 +79,6 @@ function init () {
     cells[cell].innerHTML = counter
     cells[cell].style.backgroundColor = 'white'
     if (counter < 1) {
-      console.log(cell)
       neighbors.forEach(neighbor => {
         if (!checkedCells.includes(neighbor)) {
           checkMines(neighbor)

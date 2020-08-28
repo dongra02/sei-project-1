@@ -9,6 +9,11 @@ body {
 .header {
   text-align: center;
   height: 100px;
+  font-family: 'Amatic SC', cursive;
+  font-size: 2em;
+  color: #ffffff;
+  letter-spacing: 1px;
+  margin-bottom: 20px;
 }
 
 .result {

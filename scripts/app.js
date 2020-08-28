@@ -12,8 +12,6 @@ function init () {
   let pooTimer = 0
   let discoverCount = 0
   
-
-  const gameInfoDiv = document.querySelector('.game-info')
   const resultText = document.querySelector('.result-text')
   const grid = document.querySelector('.grid')
   const pooCountText = document.querySelector('.poo-count')
@@ -44,6 +42,57 @@ function init () {
         poos.push(randCellNum)
       }
     }
+  }
+
+  function regClick (e) {
+    checkPoos(e.target.id)
+    if (discoverCount === cells.length - poos.length) {
+      youWon()
+      return
+    }
+  }
+  
+  function assignRegClick () {
+    cells.forEach(cell => {
+      if (!poos.includes(Number(cell.id))) {
+        cell.addEventListener('click', regClick)
+      }
+    })
+  }
+
+  function assignPooClick () {
+    poos.forEach(poo => {
+      cells[poo].addEventListener('click', youLose)
+    })
+  }
+
+  function youLose () {
+    const pooCell = cells[Number(event.target.id)]
+    pooCell.classList.add('mine')
+    console.log('You stepped in shit. Game Over.')
+    resultText.innerHTML = 'You lose!'
+    endGame()
+  }
+
+  function endGame () {
+    clearInterval(pooTimerInt)
+    poos.forEach(poo => cells[poo].removeEventListener('click', youLose))
+    cells.forEach(cell => {
+      cell.removeEventListener('click', pooTimerClick)
+      if (!poos.includes(cell.id)) {
+        cell.removeEventListener('click', regClick)
+      }
+    })
+  }
+
+  function pooTimerClick () {
+    pooTimer = 1
+    pooClock.innerHTML = 1
+    pooTimerInt = setInterval(() => {
+      pooTimer++
+      pooClock.innerHTML = pooTimer
+    }, 1000)
+    cells.forEach(cell => cell.removeEventListener('click', pooTimerClick))
   }
 
   function validNeighbs (cell) {
@@ -92,33 +141,7 @@ function init () {
         }
       })
     }
-    if (discoverCount === cells.length - poos.length) {
-      youWon()
-    }
     return
-  }
-
-  function regClick (e) {
-    checkPoos(e.target.id)
-  }
-  
-  function assignRegClick () {
-    cells.forEach(cell => {
-      if (!poos.includes(Number(cell.id))) {
-        cell.addEventListener('click', regClick)
-      }
-    })
-  }
-
-  function endGame () {
-    clearInterval(pooTimerInt)
-    poos.forEach(poo => cells[poo].removeEventListener('click', youLose))
-    cells.forEach(cell => {
-      cell.removeEventListener('click', pooTimerClick)
-      if (!poos.includes(cell.id)) {
-        cell.removeEventListener('click', regClick)
-      }
-    })
   }
 
   function youWon () {
@@ -126,33 +149,8 @@ function init () {
     console.log('You won! Clean shoes...')
     endGame()
   }
-
-  function youLose () {
-    const pooCell = cells[Number(event.target.id)]
-    pooCell.classList.add('mine')
-    console.log('You stepped in shit. Game Over.')
-    resultText.innerHTML = 'You lose!'
-    endGame()
-  }
-
-  function assignPooClick () {
-    poos.forEach(poo => {
-      cells[poo].addEventListener('click', youLose)
-    })
-  }
   
   createGrid()
-
-  function pooTimerClick () {
-    pooTimer = 1
-    pooClock.innerHTML = 1
-    pooTimerInt = setInterval(() => {
-      pooTimer++
-      pooClock.innerHTML = pooTimer
-    }, 1000)
-    cells.forEach(cell => cell.removeEventListener('click', pooTimerClick))
-  }
-  
 
 }
 

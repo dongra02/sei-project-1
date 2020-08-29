@@ -5,8 +5,8 @@ function init () {
   const poos = []
   const height = 20
   const width = 20
-  const pooCount = 60
-  const poosToBag = pooCount
+  const pooCount = 10
+  let poosToBag = pooCount
   const cellCount = height * width
   const checkedCells = []
   let pooTimerInt = null
@@ -78,14 +78,14 @@ function init () {
   function assignPooClick () {
     poos.forEach(poo => {
       cells[poo].addEventListener('click', youLose)
+      cells[poo].classList.add('mine')
     })
   }
 
   function youLose () {
-    const pooCell = cells[Number(event.target.id)]
-    pooCell.classList.add('mine')
     console.log('You stepped in shit. Game Over.')
     resultText.innerHTML = 'You lose!'
+    event.target.classList.add('lose')
     endGame()
   }
 
@@ -94,6 +94,7 @@ function init () {
     poos.forEach(poo => cells[poo].removeEventListener('click', youLose))
     cells.forEach(cell => {
       cell.removeEventListener('click', pooTimerClick)
+      cell.removeEventListener('contextmenu', bagPoo)
       if (!poos.includes(cell.id)) {
         cell.removeEventListener('click', regClick)
       }
@@ -142,6 +143,7 @@ function init () {
     if (!checkedCells.includes(cellNum)) {
       checkedCells.push(cellNum)
       cell.removeEventListener('click', regClick)
+      cell.removeEventListener('contextmenu', bagPoo)
     }
     const neighbors = validNeighbs(cellNum)
     let counter = 0
@@ -171,8 +173,25 @@ function init () {
   function bagPoo () {
     event.preventDefault()
     const cell = event.target
+    console.log(cell)
+    if (cell.classList.contains('bagged') && !cell.classList.contains('mine')) {
+      console.log('should add regClick')
+      cell.addEventListener('click', regClick)
+      poosToBag++
+    } else if (cell.classList.contains('bagged') && cell.classList.contains('mine')) {
+      console.log('should add youLose')
+      cell.addEventListener('click', youLose)
+      poosToBag++
+    } else {
+      console.log('should remove listeners')
+      cell.removeEventListener('click', regClick)
+      cell.removeEventListener('click', youLose)
+      poosToBag--
+    }
     cell.classList.toggle('bagged')
+    pooCountText.innerHTML = poosToBag
   }
+
   
   createGrid()
 

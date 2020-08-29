@@ -5,7 +5,7 @@ function init () {
   const poos = []
   const height = 20
   const width = 20
-  const pooCount = 10
+  const pooCount = 50
   let poosToBag = pooCount
   const cellCount = height * width
   const checkedCells = []

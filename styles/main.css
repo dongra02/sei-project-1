@@ -5,15 +5,16 @@
 
 body {
   background-image: url('../images/grass.jpg');
+  min-width: 550px;
 }
 
 .header {
   text-align: center;
-  height: 60px;
   font-family: 'Amatic SC', cursive;
   font-size: 1.8em;
   color: #ffffff;
   margin-bottom: 20px;
+  height: 60px;
 }
 
 .game-info {
@@ -29,6 +30,10 @@ body {
   color: #ffffff;
 }
 
+.poo-img {
+  height: 18px;
+}
+
 .grid {
   display: flex;
   flex-wrap: wrap;
@@ -41,7 +46,7 @@ body {
 .grid-item {
   height: 5%;
   width: 5%;
-  border: 1px solid gray;  /* remove this eventually */
+  border: 1px solid #1e5631;  /* remove this eventually */
   background-color:#68bb59;
   text-align: center;
   font-size: 12px;
@@ -58,4 +63,8 @@ body {
 
 .bagged {
   background-color: red;
+}
+
+.poo-span {
+  color: #362204;
 }

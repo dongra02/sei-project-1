@@ -59,13 +59,6 @@ function init () {
     checkPoos(e.target.id)
     checkWin()
   }
-
-  function checkWin() {
-    if (checkedCells.length === cells.length - poos.length) {
-      youWon()
-      return
-    }
-  }
   
   function assignRegClick () {
     cells.forEach(cell => {
@@ -79,25 +72,6 @@ function init () {
     poos.forEach(poo => {
       cells[poo].addEventListener('click', youLose)
       cells[poo].classList.add('mine')
-    })
-  }
-
-  function youLose () {
-    console.log('You stepped in shit. Game Over.')
-    resultText.innerHTML = 'You lose!'
-    event.target.classList.add('lose')
-    endGame()
-  }
-
-  function endGame () {
-    clearInterval(pooTimerInt)
-    poos.forEach(poo => cells[poo].removeEventListener('click', youLose))
-    cells.forEach(cell => {
-      cell.removeEventListener('click', pooTimerClick)
-      cell.removeEventListener('contextmenu', bagPoo)
-      if (!poos.includes(cell.id)) {
-        cell.removeEventListener('click', regClick)
-      }
     })
   }
 
@@ -164,32 +138,54 @@ function init () {
     return
   }
 
-  function youWon () {
-    resultText.innerHTML = 'You Win!'
-    console.log('You won! Clean shoes...')
-    endGame()
-  }
-
   function bagPoo () {
     event.preventDefault()
     const cell = event.target
-    console.log(cell)
     if (cell.classList.contains('bagged') && !cell.classList.contains('mine')) {
-      console.log('should add regClick')
       cell.addEventListener('click', regClick)
       poosToBag++
     } else if (cell.classList.contains('bagged') && cell.classList.contains('mine')) {
-      console.log('should add youLose')
       cell.addEventListener('click', youLose)
       poosToBag++
     } else {
-      console.log('should remove listeners')
       cell.removeEventListener('click', regClick)
       cell.removeEventListener('click', youLose)
       poosToBag--
     }
     cell.classList.toggle('bagged')
     pooCountText.innerHTML = poosToBag
+  }
+
+  function checkWin() {
+    if (checkedCells.length === cells.length - poos.length) {
+      youWon()
+      return
+    }
+  }
+
+  function youWon () {
+    resultText.innerHTML = 'You Win!'
+    console.log('You won! Clean shoes...')
+    endGame()
+  }
+
+  function youLose () {
+    console.log('You stepped in shit. Game Over.')
+    resultText.innerHTML = 'You lose!'
+    event.target.classList.add('lose')
+    endGame()
+  }
+
+  function endGame () {
+    clearInterval(pooTimerInt)
+    poos.forEach(poo => cells[poo].removeEventListener('click', youLose))
+    cells.forEach(cell => {
+      cell.removeEventListener('click', pooTimerClick)
+      cell.removeEventListener('contextmenu', bagPoo)
+      if (!poos.includes(cell.id)) {
+        cell.removeEventListener('click', regClick)
+      }
+    })
   }
 
   

@@ -71,7 +71,7 @@ function init () {
   function assignPooClick () {
     poos.forEach(poo => {
       cells[poo].addEventListener('click', youLose)
-      cells[poo].classList.add('mine')
+      cells[poo].classList.add('poo')
     })
   }
 
@@ -141,10 +141,10 @@ function init () {
   function bagPoo () {
     event.preventDefault()
     const cell = event.target
-    if (cell.classList.contains('bagged') && !cell.classList.contains('mine')) {
+    if (cell.classList.contains('bagged') && !cell.classList.contains('poo')) {
       cell.addEventListener('click', regClick)
       poosToBag++
-    } else if (cell.classList.contains('bagged') && cell.classList.contains('mine')) {
+    } else if (cell.classList.contains('bagged') && cell.classList.contains('poo')) {
       cell.addEventListener('click', youLose)
       poosToBag++
     } else {

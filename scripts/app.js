@@ -5,7 +5,7 @@ function init () {
   const poos = []
   const height = 20
   const width = 20
-  const pooCount = 4
+  const pooCount = 6
   const cellCount = height * width
   const checkedCells = []
   let pooTimerInt = null
@@ -26,17 +26,27 @@ function init () {
       grid.appendChild(newCell)
       cells.push(newCell)
     }
-    plantPoos()
-    assignRegClick()
-    assignPooClick()
     pooCountText.innerHTML = pooCount
-    cells.forEach(cell => cell.addEventListener('click', pooTimerClick))
+    cells.forEach(cell => {
+      cell.addEventListener('click', pooTimerClick)
+      cell.addEventListener('click', firstClick)
+    })
   }
 
-  function plantPoos() {
+  function firstClick () {
+    const firstCellNum = Number(event.target.id)
+    plantPoos(firstCellNum)
+    checkPoos(firstCellNum)
+    assignPooClick()
+    assignRegClick()
+    cells.forEach(cell => cell.removeEventListener('click', firstClick))
+    checkWin()
+  }
+
+  function plantPoos(firstCellNum) {
     for (let i = 0; i < pooCount; i++) {
       const randCellNum = Math.floor(Math.random() * cellCount)
-      if (poos.includes(randCellNum)) {
+      if (poos.includes(randCellNum) || randCellNum === firstCellNum) {
         i--
       } else {
         poos.push(randCellNum)
@@ -46,6 +56,10 @@ function init () {
 
   function regClick (e) {
     checkPoos(e.target.id)
+    checkWin()
+  }
+
+  function checkWin() {
     if (discoverCount === cells.length - poos.length) {
       youWon()
       return

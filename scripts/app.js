@@ -10,7 +10,6 @@ function init () {
   const checkedCells = []
   let pooTimerInt = null
   let pooTimer = 0
-  let discoverCount = 0
   
   const resultText = document.querySelector('.result-text')
   const grid = document.querySelector('.grid')
@@ -60,7 +59,7 @@ function init () {
   }
 
   function checkWin() {
-    if (discoverCount === cells.length - poos.length) {
+    if (checkedCells.length === cells.length - poos.length) {
       youWon()
       return
     }
@@ -135,19 +134,21 @@ function init () {
     return neighbors
   }
 
-  function checkPoos (cell) {
-    discoverCount++
-    cell = Number(cell)
-    checkedCells.push(cell)
-    const neighbors = validNeighbs(cell)
+  function checkPoos (cellNum) {
+    cellNum = Number(cellNum)
+    const cell = cells[cellNum]
+    if (!checkedCells.includes(cellNum)) {
+      checkedCells.push(cellNum)
+    }
+    const neighbors = validNeighbs(cellNum)
     let counter = 0
     neighbors.forEach(neighbor => {
       if (poos.includes(neighbor)) {
         counter++
       }
     })
-    cells[cell].innerHTML = counter > 0 ? counter : ''
-    cells[cell].style.backgroundColor = '#acdf87'
+    cell.innerHTML = counter > 0 ? counter : ''
+    cell.style.backgroundColor = '#acdf87'
     if (counter < 1) {
       neighbors.forEach(neighbor => {
         if (!checkedCells.includes(neighbor)) {

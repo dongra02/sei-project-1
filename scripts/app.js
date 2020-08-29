@@ -5,7 +5,7 @@ function init () {
   const poos = []
   const height = 20
   const width = 20
-  const pooCount = 10
+  const pooCount = 4
   const cellCount = height * width
   const checkedCells = []
   let pooTimerInt = null
@@ -133,7 +133,7 @@ function init () {
       }
     })
     cells[cell].innerHTML = counter > 0 ? counter : ''
-    cells[cell].style.backgroundColor = 'white'
+    cells[cell].style.backgroundColor = '#acdf87'
     if (counter < 1) {
       neighbors.forEach(neighbor => {
         if (!checkedCells.includes(neighbor)) {

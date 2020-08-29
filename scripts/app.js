@@ -5,7 +5,8 @@ function init () {
   const poos = []
   const height = 20
   const width = 20
-  const pooCount = 6
+  const pooCount = 60
+  const poosToBag = pooCount
   const cellCount = height * width
   const checkedCells = []
   let pooTimerInt = null
@@ -25,10 +26,11 @@ function init () {
       grid.appendChild(newCell)
       cells.push(newCell)
     }
-    pooCountText.innerHTML = pooCount
+    pooCountText.innerHTML = poosToBag
     cells.forEach(cell => {
       cell.addEventListener('click', pooTimerClick)
       cell.addEventListener('click', firstClick)
+      cell.addEventListener('contextmenu', bagPoo)
     })
   }
 
@@ -139,6 +141,7 @@ function init () {
     const cell = cells[cellNum]
     if (!checkedCells.includes(cellNum)) {
       checkedCells.push(cellNum)
+      cell.removeEventListener('click', regClick)
     }
     const neighbors = validNeighbs(cellNum)
     let counter = 0
@@ -163,6 +166,12 @@ function init () {
     resultText.innerHTML = 'You Win!'
     console.log('You won! Clean shoes...')
     endGame()
+  }
+
+  function bagPoo () {
+    event.preventDefault()
+    const cell = event.target
+    cell.classList.toggle('bagged')
   }
   
   createGrid()

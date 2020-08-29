@@ -55,3 +55,7 @@ body {
   background-repeat: no-repeat;
   background-color: #acdf87;
 }
+
+.bagged {
+  background-color: red;
+}

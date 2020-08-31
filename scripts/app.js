@@ -21,13 +21,33 @@ function init () {
   function handleForm () {
     event.preventDefault()
     const diffLevel = event.target.difficulty.value
-    console.log(diffLevel)
-    height = 10
-    width = 10
-    pooCount = 10
-    cellHeight = '10%'
-    cellWidth = '10%'
-
+    switch (diffLevel) {
+      case 'easy':
+        width = 10
+        height = 10
+        pooCount = 10
+        cellWidth = '10%'
+        cellHeight = '10%'
+        break
+      case 'med':
+        width = 16
+        height = 16
+        pooCount = 40
+        cellWidth = '6.25%'
+        cellHeight = '6.25%'
+        grid.style.width = '400px'
+        grid.style.height = '400px'
+        break
+      case 'hard':
+        width = 30
+        height = 16
+        pooCount = 99
+        cellWidth = '3.33%'
+        cellHeight = '6.66%'
+        grid.style.width = '660px'
+        grid.style.height = '330px'
+        
+    }
     cellCount = height * width
     poosToBag = pooCount
     createGrid()
@@ -35,8 +55,6 @@ function init () {
       cell.style.width = cellWidth
       cell.style.height = cellHeight
     })
-
-    event.preventDefault()
     introContain.style.display = 'none'
     gameInfoDiv.style.display = 'flex'
     grid.style.display = 'flex'

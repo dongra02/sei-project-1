@@ -17,8 +17,40 @@ body {
   height: 60px;
 }
 
-.game-info {
+.intro-container {
+  margin: 60px auto;
+  width: 50%;
+  background-color: #acdf87;
+  border-radius: 4px;
+  padding: 20px;
+
+  box-shadow: 5px 5px #1e5631;
+}
+
+.intro-instruct {
+  text-align: center;
+}
+
+form {
   display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.difficulties {
+  margin-bottom: 10px;
+  width: 80%;
+}
+
+.submit-btn {
+  width: 20%;
+  background-color:#68bb59;
+  color: #ffffff;
+  border-radius: 4px;
+}
+
+.game-info {
+  display: none;
   justify-content: space-between;
   align-items: center;
   margin: 5px auto;
@@ -35,7 +67,7 @@ body {
 }
 
 .grid {
-  display: flex;
+  display: none;
   flex-wrap: wrap;
 
   height: 330px;

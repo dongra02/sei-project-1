@@ -38,14 +38,14 @@ body {
   display: flex;
   flex-wrap: wrap;
 
-  height: 400px;
-  width: 400px;
+  height: 330px;
+  width: 660px;
   margin: 0 auto;
 }
 
 .grid-item {
-  height: 6.25%;
-  width: 6.25%;
+  height: 6.66%;
+  width: 3.33%;
   border: 1px solid #1e5631;  /* remove this eventually */
   background-color:#68bb59;
   text-align: center;

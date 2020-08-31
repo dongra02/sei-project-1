@@ -91,7 +91,7 @@ function init () {
   }
 
   function clearGrid() {
-    while(grid.firstChild) {
+    while (grid.firstChild) {
       grid.removeChild(grid.firstChild)
     }
     cells = []

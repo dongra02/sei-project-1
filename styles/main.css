@@ -18,6 +18,7 @@ body {
 }
 
 .intro-container {
+  display: block;
   margin: 60px auto;
   width: 50%;
   background-color: #acdf87;
@@ -67,17 +68,15 @@ form {
 }
 
 .grid {
-  display: none;
+  display: flex;
   flex-wrap: wrap;
 
   height: 330px;
-  width: 660px;
+  width: 330px;
   margin: 0 auto;
 }
 
 .grid-item {
-  height: 6.66%;
-  width: 3.33%;
   border: 1px solid #1e5631;  /* remove this eventually */
   background-color:#68bb59;
   text-align: center;

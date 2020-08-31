@@ -3,20 +3,48 @@ function init () {
 
   const cells = []
   const poos = []
-  const height = 16
-  const width = 30
-  const pooCount = 40
-  let poosToBag = pooCount
-  const cellCount = height * width
+  let height, width, pooCount, poosToBag, cellCount, cellHeight, cellWidth
   const checkedCells = []
   let pooTimerInt = null
   let pooTimer = 0
   
+  const introContain = document.querySelector('.intro-container')
   const resultText = document.querySelector('.result-text')
+  const gameInfoDiv = document.querySelector('.game-info')
   const grid = document.querySelector('.grid')
   const pooCountText = document.querySelector('.poo-count')
   const pooClock = document.querySelector('.poo-clock')
-  pooClock.innerHTML = pooTimer
+  const form = document.querySelector('.intro-form')
+
+  
+
+  function handleForm () {
+    event.preventDefault()
+    const diffLevel = event.target.difficulty.value
+    console.log(diffLevel)
+    height = 10
+    width = 10
+    pooCount = 10
+    cellHeight = '10%'
+    cellWidth = '10%'
+
+    cellCount = height * width
+    poosToBag = pooCount
+    createGrid()
+    cells.forEach(cell => {
+      cell.style.width = cellWidth
+      cell.style.height = cellHeight
+    })
+
+    event.preventDefault()
+    introContain.style.display = 'none'
+    gameInfoDiv.style.display = 'flex'
+    grid.style.display = 'flex'
+    pooClock.innerHTML = pooTimer
+  }
+
+  form.addEventListener('submit', handleForm)
+
 
   function createGrid () {
     for (let i = 0; i < cellCount; i++) {
@@ -191,8 +219,6 @@ function init () {
     })
   }
 
-  
-  createGrid()
 
 }
 

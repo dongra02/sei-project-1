@@ -23,9 +23,6 @@ function init () {
   resetBtn.addEventListener('click', createGrid)
   restartBtn.addEventListener('click', handleRestart)
 
-  //need reset click funciton to clear first grid, then create grid.
-  //need restart click function to restart from form
-
   function handleForm () {
     event.preventDefault()
     const diffLevel = event.target.difficulty.value

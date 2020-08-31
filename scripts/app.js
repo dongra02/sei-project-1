@@ -3,9 +3,9 @@ function init () {
 
   const cells = []
   const poos = []
-  const height = 20
-  const width = 20
-  const pooCount = 50
+  const height = 16
+  const width = 16
+  const pooCount = 10
   let poosToBag = pooCount
   const cellCount = height * width
   const checkedCells = []
@@ -30,17 +30,19 @@ function init () {
     cells.forEach(cell => {
       cell.addEventListener('click', pooTimerClick)
       cell.addEventListener('click', firstClick)
-      cell.addEventListener('contextmenu', bagPoo)
     })
   }
 
   function firstClick () {
     const firstCellNum = Number(event.target.id)
     plantPoos(firstCellNum)
-    checkPoos(firstCellNum)
     assignPooClick()
     assignRegClick()
-    cells.forEach(cell => cell.removeEventListener('click', firstClick))
+    cells.forEach(cell => {
+      cell.removeEventListener('click', firstClick)
+      cell.addEventListener('contextmenu', bagPoo)
+    })
+    checkPoos(firstCellNum)
     checkWin()
   }
 
@@ -114,10 +116,10 @@ function init () {
   function checkPoos (cellNum) {
     cellNum = Number(cellNum)
     const cell = cells[cellNum]
+    cell.removeEventListener('contextmenu', bagPoo)
     if (!checkedCells.includes(cellNum)) {
       checkedCells.push(cellNum)
       cell.removeEventListener('click', regClick)
-      cell.removeEventListener('contextmenu', bagPoo)
     }
     const neighbors = validNeighbs(cellNum)
     let counter = 0
@@ -131,6 +133,7 @@ function init () {
     if (counter < 1) {
       neighbors.forEach(neighbor => {
         if (!checkedCells.includes(neighbor)) {
+          cells[neighbor].removeEventListener('contextmenu', bagPoo)
           checkPoos(neighbor)
         }
       })

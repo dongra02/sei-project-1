@@ -44,8 +44,8 @@ body {
 }
 
 .grid-item {
-  height: 5%;
-  width: 5%;
+  height: 6.25%;
+  width: 6.25%;
   border: 1px solid #1e5631;  /* remove this eventually */
   background-color:#68bb59;
   text-align: center;
@@ -62,7 +62,10 @@ body {
 }
 
 .bagged {
-  background-color: red;
+  background-image: url('../images/bag.png');
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-color: #68bb59;
 }
 
 .poo-span {

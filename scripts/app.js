@@ -46,7 +46,10 @@ function init () {
         cellHeight = '6.66%'
         grid.style.width = '660px'
         grid.style.height = '330px'
-        
+        break
+      default:
+        alert('Pick a difficulty')
+        return
     }
     cellCount = height * width
     poosToBag = pooCount

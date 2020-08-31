@@ -1,10 +1,10 @@
 function init () {
   console.log('JS is working.')
 
-  const cells = []
-  const poos = []
+  let cells = []
+  let poos = []
   let height, width, pooCount, poosToBag, cellCount, cellHeight, cellWidth
-  const checkedCells = []
+  let checkedCells = []
   let pooTimerInt = null
   let pooTimer = 0
   
@@ -15,8 +15,15 @@ function init () {
   const pooCountText = document.querySelector('.poo-count')
   const pooClock = document.querySelector('.poo-clock')
   const form = document.querySelector('.intro-form')
+  const gameBtns = document.querySelector('.game-btns')
+  const resetBtn = document.querySelector('.reset-grid')
+  const restartBtn = document.querySelector('restart')
 
-  
+  form.addEventListener('submit', handleForm)
+  resetBtn.addEventListener('click', createGrid)
+
+  //need reset click funciton to clear first grid, then create grid.
+  //need restart click function to restart from form
 
   function handleForm () {
     event.preventDefault()
@@ -46,28 +53,34 @@ function init () {
         cellHeight = '6.66%'
         grid.style.width = '660px'
         grid.style.height = '330px'
+        gameBtns.style.marginTop = '30px'
         break
       default:
         alert('Pick a difficulty')
         return
     }
-    cellCount = height * width
-    poosToBag = pooCount
     createGrid()
-    cells.forEach(cell => {
-      cell.style.width = cellWidth
-      cell.style.height = cellHeight
-    })
     introContain.style.display = 'none'
     gameInfoDiv.style.display = 'flex'
     grid.style.display = 'flex'
-    pooClock.innerHTML = pooTimer
+    gameBtns.style.display = 'block'
   }
 
-  form.addEventListener('submit', handleForm)
-
+  function clearGrid() {
+    while(grid.firstChild) {
+      grid.removeChild(grid.firstChild)
+    }
+    cells = []
+    poos = []
+    checkedCells = []
+    pooTimer = 0
+    clearInterval(pooTimerInt)
+    resultText.innerHTML = ''
+  }
 
   function createGrid () {
+    clearGrid()
+    cellCount = height * width
     for (let i = 0; i < cellCount; i++) {
       const newCell = document.createElement('div')
       newCell.classList.add('grid-item')
@@ -75,11 +88,15 @@ function init () {
       grid.appendChild(newCell)
       cells.push(newCell)
     }
-    pooCountText.innerHTML = poosToBag
     cells.forEach(cell => {
+      cell.style.width = cellWidth
+      cell.style.height = cellHeight
       cell.addEventListener('click', pooTimerClick)
       cell.addEventListener('click', firstClick)
     })
+    pooClock.innerHTML = pooTimer
+    poosToBag = pooCount
+    pooCountText.innerHTML = poosToBag
   }
 
   function firstClick () {

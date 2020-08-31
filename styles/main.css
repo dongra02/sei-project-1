@@ -85,6 +85,12 @@ form {
   box-shadow: 5px 5px #1e5631;
 }
 
+.game-btns {
+  display: none;
+  text-align: center;
+  margin-top: 10px;
+}
+
 .lose {
   background-image: url('../images/poo.png');
   background-size: contain;

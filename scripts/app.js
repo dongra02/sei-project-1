@@ -17,10 +17,11 @@ function init () {
   const form = document.querySelector('.intro-form')
   const gameBtns = document.querySelector('.game-btns')
   const resetBtn = document.querySelector('.reset-grid')
-  const restartBtn = document.querySelector('restart')
+  const restartBtn = document.querySelector('.restart')
 
   form.addEventListener('submit', handleForm)
   resetBtn.addEventListener('click', createGrid)
+  restartBtn.addEventListener('click', handleRestart)
 
   //need reset click funciton to clear first grid, then create grid.
   //need restart click function to restart from form
@@ -35,6 +36,8 @@ function init () {
         pooCount = 10
         cellWidth = '10%'
         cellHeight = '10%'
+        grid.style.width = '330px'
+        grid.style.height = '330px'
         break
       case 'med':
         width = 16
@@ -66,18 +69,6 @@ function init () {
     gameBtns.style.display = 'block'
   }
 
-  function clearGrid() {
-    while(grid.firstChild) {
-      grid.removeChild(grid.firstChild)
-    }
-    cells = []
-    poos = []
-    checkedCells = []
-    pooTimer = 0
-    clearInterval(pooTimerInt)
-    resultText.innerHTML = ''
-  }
-
   function createGrid () {
     clearGrid()
     cellCount = height * width
@@ -97,6 +88,26 @@ function init () {
     pooClock.innerHTML = pooTimer
     poosToBag = pooCount
     pooCountText.innerHTML = poosToBag
+  }
+
+  function clearGrid() {
+    while(grid.firstChild) {
+      grid.removeChild(grid.firstChild)
+    }
+    cells = []
+    poos = []
+    checkedCells = []
+    pooTimer = 0
+    clearInterval(pooTimerInt)
+    resultText.innerHTML = ''
+  }
+
+  function handleRestart() {
+    clearGrid()
+    introContain.style.display = 'block'
+    gameInfoDiv.style.display = 'none'
+    grid.style.display = 'none'
+    gameBtns.style.display = 'none'
   }
 
   function firstClick () {

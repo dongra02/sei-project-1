@@ -43,11 +43,15 @@ form {
   width: 80%;
 }
 
-.submit-btn {
-  width: 20%;
+.button {
+  width: 120px;
   background-color:#68bb59;
   color: #ffffff;
   border-radius: 4px;
+}
+
+.game-btns {
+  
 }
 
 .game-info {

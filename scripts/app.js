@@ -218,6 +218,15 @@ function init () {
     if (counter === 4) {
       cell.style.color = '#421C52'
     }
+    if (counter === 5) {
+      cell.style.color = '#590C0C'
+    }
+    if (counter === 6) {
+      cell.style.color = '#26867D'
+    }
+    if (counter === 8) {
+      cell.style.color = '#464646'
+    }
     if (counter < 1) {
       neighbors.forEach(neighbor => {
         if (!checkedCells.includes(neighbor)) {
@@ -264,6 +273,12 @@ function init () {
     console.log('You stepped in shit. Game Over.')
     resultText.innerHTML = 'You lose!'
     event.target.classList.add('lose')
+    event.target.style.backgroundColor = '#FF0000'
+    poos.forEach(poo => {
+      if (!cells[poo].classList.contains('bagged')) {
+        cells[poo].classList.add('lose')
+      }
+    })
     endGame()
   }
 

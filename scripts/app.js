@@ -35,6 +35,7 @@ function init () {
         cellHeight = '10%'
         grid.style.width = '330px'
         grid.style.height = '330px'
+        gameBtns.style.marginTop = '20px'
         break
       case 'med':
         width = 16
@@ -44,6 +45,7 @@ function init () {
         cellHeight = '6.25%'
         grid.style.width = '400px'
         grid.style.height = '400px'
+        gameBtns.style.marginTop = '20px'
         break
       case 'hard':
         width = 30
@@ -53,7 +55,7 @@ function init () {
         cellHeight = '6.66%'
         grid.style.width = '660px'
         grid.style.height = '330px'
-        gameBtns.style.marginTop = '30px'
+        gameBtns.style.marginTop = '40px'
         break
       default:
         alert('Pick a difficulty')
@@ -212,6 +214,9 @@ function init () {
     }
     if (counter === 3) {
       cell.style.color = '#FF0000'
+    }
+    if (counter === 4) {
+      cell.style.color = '#421C52'
     }
     if (counter < 1) {
       neighbors.forEach(neighbor => {

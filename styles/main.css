@@ -49,6 +49,8 @@ form {
   background-color:#68bb59;
   color: #ffffff;
   border-radius: 4px;
+  margin: auto 20px;
+  padding: auto 10px;
 }
 
 .game-btns {
@@ -59,7 +61,7 @@ form {
 
 .game-info {
   display: none;
-  justify-content: space-between;
+  justify-content: space-around;
   align-items: center;
   margin: 5px auto;
 
@@ -87,7 +89,7 @@ form {
   display: flex;
   justify-content: center;
   align-items: center;
-  border: 1px solid #1e5631;  /* remove this eventually */
+  border: 1px solid #1e5631;
   background-color:#68bb59;
   font-size: 100%;
   font-weight: 600;

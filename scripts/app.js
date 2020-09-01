@@ -204,6 +204,15 @@ function init () {
     })
     cell.innerHTML = counter > 0 ? counter : ''
     cell.style.backgroundColor = '#acdf87'
+    if (counter === 1) {
+      cell.style.color = '#0000FF'
+    }
+    if (counter === 2) {
+      cell.style.color = '#001900'
+    }
+    if (counter === 3) {
+      cell.style.color = '#FF0000'
+    }
     if (counter < 1) {
       neighbors.forEach(neighbor => {
         if (!checkedCells.includes(neighbor)) {

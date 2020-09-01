@@ -10,7 +10,7 @@ body {
 
 .header {
   text-align: center;
-  font-size: 1.8em;
+  font-size: 2em;
   margin-bottom: 20px;
   height: 60px;
 }
@@ -104,7 +104,7 @@ form {
   background-image: url('../images/poo.png');
   background-size: contain;
   background-repeat: no-repeat;
-  background-color: #acdf87;
+  /* background-color: #acdf87; */
 }
 
 .bagged {

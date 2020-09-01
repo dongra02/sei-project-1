@@ -10,11 +10,15 @@ body {
 
 .header {
   text-align: center;
-  font-family: 'Amatic SC', cursive;
   font-size: 1.8em;
-  color: #ffffff;
   margin-bottom: 20px;
   height: 60px;
+}
+
+.game-name {
+  font-family: 'Amatic SC', cursive;
+  color: #ffffff;
+  font-weight: 700;
 }
 
 .intro-container {

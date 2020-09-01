@@ -281,7 +281,7 @@ function init () {
     })
     cells.forEach(cell => {
       if (!poos.includes(Number(cell.id)) && cell.classList.contains('bagged')) {
-        cell.style.backgroundImage = "url('images/badBag.png')"
+        cell.style.backgroundImage = "url('./images/badBag.png')"
       }
     })
     endGame()

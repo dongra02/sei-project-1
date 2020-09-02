@@ -9,14 +9,15 @@ function init () {
   let pooTimer = 0
   
   const introContain = document.querySelector('.intro-container')
+  const form = document.querySelector('.intro-form')
   const diffBtns = document.querySelectorAll('.difficulties')
-  console.log(diffBtns)
+  const diffText = document.querySelector('.diff-text')
+  const sbmtBtn = document.querySelector('.submit-btn')
   const resultText = document.querySelector('.result-text')
   const gameInfoDiv = document.querySelector('.game-info')
   const grid = document.querySelector('.grid')
   const pooCountText = document.querySelector('.poo-count')
   const pooClock = document.querySelector('.poo-clock')
-  const form = document.querySelector('.intro-form')
   const gameBtns = document.querySelector('.game-btns')
   const resetBtn = document.querySelector('.reset-grid')
   const restartBtn = document.querySelector('.restart')
@@ -24,6 +25,22 @@ function init () {
   form.addEventListener('submit', handleForm)
   resetBtn.addEventListener('click', createGrid)
   restartBtn.addEventListener('click', handleRestart)
+  diffBtns.forEach(button => button.addEventListener('click', diffSelect))
+
+  function diffSelect() {
+    switch (event.target.value) {
+      case 'easy':
+        diffText.innerHTML = 'A modest lawn belonging to small dog, probably a chihuahua or something like that.'
+        break
+      case 'med':
+        diffText.innerHTML = 'A proper lawn under the guard of a full grown (and well fed) dog. Walk carefully...'
+        break
+      case 'hard':
+        diffText.innerHTML = 'Just disgusting. Seriously, who is in charge of cleaning up after this dog?'
+        break
+    }
+    sbmtBtn.style.display = 'inline'
+  }
 
   function handleForm () {
     event.preventDefault()

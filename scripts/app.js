@@ -9,6 +9,8 @@ function init () {
   let pooTimer = 0
   
   const introContain = document.querySelector('.intro-container')
+  const diffBtns = document.querySelectorAll('.difficulties')
+  console.log(diffBtns)
   const resultText = document.querySelector('.result-text')
   const gameInfoDiv = document.querySelector('.game-info')
   const grid = document.querySelector('.grid')

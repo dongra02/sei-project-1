@@ -21,6 +21,14 @@ body {
   font-weight: 700;
 }
 
+input[type='radio'] {
+  display: none;
+}
+
+input[type='radio']:checked + label {
+  background-color: #ffffff;
+}
+
 .intro-container {
   display: block;
   margin: 60px auto;
@@ -28,24 +36,24 @@ body {
   background-color: #acdf87;
   border-radius: 4px;
   padding: 20px;
+  text-align: center;
 
   box-shadow: 5px 5px #1e5631;
 }
 
 .intro-instruct {
-  text-align: center;
+  font-weight: 600;
 }
 
-form {
+.diff-btns {
   display: flex;
-  flex-direction: column;
-  align-items: center;
 }
 
 .difficulties {
   display: flex;
-  margin-bottom: 10px;
-  width: 80%;
+  flex-direction: column;
+  width: 70%;
+  font-size: 10px;
 }
 
 .button {
@@ -55,6 +63,10 @@ form {
   border-radius: 4px;
   margin: auto 20px;
   padding: auto 10px;
+}
+
+.submit-btn {
+  margin-top: 10px;
 }
 
 .game-btns {
@@ -104,7 +116,6 @@ form {
   background-image: url('../images/poo.png');
   background-size: contain;
   background-repeat: no-repeat;
-  /* background-color: #acdf87; */
 }
 
 .bagged {

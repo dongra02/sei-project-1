@@ -260,18 +260,29 @@ function init () {
   function bagPoo () {
     event.preventDefault()
     const cell = event.target
-    if (cell.classList.contains('bagged') && !cell.classList.contains('poo')) {
-      cell.addEventListener('click', regClick)
-      poosToBag++
-    } else if (cell.classList.contains('bagged') && cell.classList.contains('poo')) {
-      cell.addEventListener('click', youLose)
-      poosToBag++
-    } else {
-      cell.removeEventListener('click', regClick)
-      cell.removeEventListener('click', youLose)
-      poosToBag--
+    if (poosToBag > 0) {
+      if (cell.classList.contains('bagged') && !cell.classList.contains('poo')) {
+        cell.addEventListener('click', regClick)
+        poosToBag++
+      } else if (cell.classList.contains('bagged') && cell.classList.contains('poo')) {
+        cell.addEventListener('click', youLose)
+        poosToBag++
+      } else {
+        cell.removeEventListener('click', regClick)
+        cell.removeEventListener('click', youLose)
+        poosToBag--
+      }
+      cell.classList.toggle('bagged')
+    } else if (poosToBag === 0 && cell.classList.contains('bagged')){
+      if (cell.classList.contains('bagged') && !cell.classList.contains('poo')) {
+        cell.addEventListener('click', regClick)
+        poosToBag++
+      } else if (cell.classList.contains('bagged') && cell.classList.contains('poo')) {
+        cell.addEventListener('click', youLose)
+        poosToBag++
+      }
+      cell.classList.toggle('bagged')
     }
-    cell.classList.toggle('bagged')
     pooCountText.innerHTML = poosToBag
   }
 

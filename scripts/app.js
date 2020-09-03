@@ -21,6 +21,8 @@ function init () {
   const gameBtns = document.querySelector('.game-btns')
   const resetBtn = document.querySelector('.reset-grid')
   const restartBtn = document.querySelector('.restart')
+  const audio = document.querySelector('.audio')
+  console.log(audio)
 
   form.addEventListener('submit', handleForm)
   resetBtn.addEventListener('click', createGrid)

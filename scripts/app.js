@@ -81,6 +81,8 @@ function init () {
         alert('Pick a difficulty')
         return
     }
+    audio.src = './audio/deepbark.wav'
+    audio.play()
     createGrid()
     introContain.style.display = 'none'
     gameInfoDiv.style.display = 'flex'

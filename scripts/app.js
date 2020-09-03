@@ -299,6 +299,8 @@ function init () {
   function youWon () {
     resultText.innerHTML = 'You Win!'
     console.log('You won! Clean shoes...')
+    audio.src = './audio/applause2_x.wav'
+    audio.play()
     endGame()
   }
 

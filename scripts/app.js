@@ -249,7 +249,7 @@ function init () {
     }
     if (counter < 1) {
       neighbors.forEach(neighbor => {
-        if (!checkedCells.includes(neighbor)) {
+        if (!checkedCells.includes(neighbor) && !cells[neighbor].classList.contains('bagged')) {
           cells[neighbor].removeEventListener('contextmenu', bagPoo)
           checkPoos(neighbor)
         }
@@ -275,10 +275,10 @@ function init () {
       }
       cell.classList.toggle('bagged')
     } else if (poosToBag === 0 && cell.classList.contains('bagged')){
-      if (cell.classList.contains('bagged') && !cell.classList.contains('poo')) {
+      if (!cell.classList.contains('poo')) {
         cell.addEventListener('click', regClick)
         poosToBag++
-      } else if (cell.classList.contains('bagged') && cell.classList.contains('poo')) {
+      } else if (cell.classList.contains('poo')) {
         cell.addEventListener('click', youLose)
         poosToBag++
       }

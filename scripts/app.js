@@ -306,6 +306,8 @@ function init () {
     console.log('You stepped in shit. Game Over.')
     resultText.innerHTML = 'You lose!'
     event.target.classList.add('lose')
+    audio.src = './audio/splooge.wav'
+    audio.play()
     event.target.style.backgroundColor = '#FF0000'
     poos.forEach(poo => {
       if (!cells[poo].classList.contains('bagged')) {

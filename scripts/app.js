@@ -281,6 +281,8 @@ function init () {
       } else if (cell.classList.contains('poo')) {
         cell.addEventListener('click', youLose)
         poosToBag++
+      } else if (poosToBag === 0 && !cell.classList.contains('bagged')) {
+        pooCountText.classList.add('pulse')
       }
       cell.classList.toggle('bagged')
     }

@@ -77,6 +77,10 @@ label {
   animation: pulse 1s 1 ease-in-out;
 }
 
+.pulse {
+  animation: pulse 1s 1 ease-in-out;
+}
+
 .game-btns {
   display: none;
   text-align: center;

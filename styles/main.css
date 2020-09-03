@@ -74,6 +74,7 @@ label {
 .submit-btn {
   display: none;
   margin-top: 10px;
+  animation: pulse 1s 1 ease-in-out;
 }
 
 .game-btns {
@@ -135,4 +136,14 @@ label {
 .poo-span {
   color: #362204;
   display: inline-block;
+}
+
+@keyframes pulse {
+  0%, 100% {
+    transform: scale(1)
+  }
+
+  50% {
+    transform: scale(1.25)
+  }
 }

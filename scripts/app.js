@@ -288,7 +288,7 @@ function init () {
     }
     pooCountText.innerHTML = poosToBag
   }
-
+  
   function checkWin() {
     if (checkedCells.length === cells.length - poos.length) {
       youWon()

@@ -298,14 +298,12 @@ function init () {
 
   function youWon () {
     resultText.innerHTML = 'You Win!'
-    console.log('You won! Clean shoes...')
     audio.src = './audio/applause2_x.wav'
     audio.play()
     endGame()
   }
 
   function youLose () {
-    console.log('You stepped in shit. Game Over.')
     resultText.innerHTML = 'You lose!'
     event.target.classList.add('lose')
     audio.src = './audio/splooge.wav'

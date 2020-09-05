@@ -16,6 +16,7 @@ function init () {
   const resultText = document.querySelector('.result-text')
   const gameInfoDiv = document.querySelector('.game-info')
   const grid = document.querySelector('.grid')
+  const pooCountDiv = document.querySelector('.poo-count-div')
   const pooCountText = document.querySelector('.poo-count')
   const pooClock = document.querySelector('.poo-clock')
   const gameBtns = document.querySelector('.game-btns')
@@ -109,6 +110,7 @@ function init () {
     pooClock.innerHTML = pooTimer
     poosToBag = pooCount
     pooCountText.innerHTML = poosToBag
+    pooCountDiv.classList.add('pulse')
   }
 
   function clearGrid() {
@@ -125,6 +127,7 @@ function init () {
 
   function handleRestart() {
     clearGrid()
+    pooCountDiv.classList.add('pulse')
     introContain.style.display = 'block'
     gameInfoDiv.style.display = 'none'
     grid.style.display = 'none'
@@ -140,6 +143,7 @@ function init () {
       cell.removeEventListener('click', firstClick)
       cell.addEventListener('contextmenu', bagPoo)
     })
+    pooCountDiv.classList.remove('pulse')
     checkPoos(firstCellNum)
     checkWin()
   }
@@ -285,7 +289,12 @@ function init () {
         poosToBag++
       }
       cell.classList.toggle('bagged')
+    } else if (poosToBag === 0 && !cell.classList.contains('bagged')) {
+      pooCountDiv.classList.add('pulse')
     }
+    setTimeout(() => {
+      pooCountDiv.classList.remove('pulse')
+    },500)
     pooCountText.innerHTML = poosToBag
   }
   

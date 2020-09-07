@@ -30,3 +30,28 @@ As soon as a cell containing a poo is clicked, the player has lost. The timer en
 * HTML5 with audio
 * CSS3 with animation
 * Git + Github
+***
+## Timeframe
+The project took 7 days from planning to completion.
+***
+## Process
+The first step was planning the basic layout of the page. A quick wire-frame to determine a rough plan for how many sections/divs the game would require. Given this takes place on a single grid, the advance layout planning was quick and had to modified as additional features came to mind.
+
+Once a basic HTML layout was determined, I moved to planning the basic beginning functionality. This was done in handwritten psuedo code and tested in chunks. I decided to start by just creating one 'difficulty' to get all functionality working, and then add in ability to change the size and number of 'poos' after I had functioning version. The first functions to create were:
+* Creation of the Grid
+* Planting of the 'Poos'
+* Creation of the Bag Counter
+* Creation of the Timer
+
+When planning the above functionality, I needed to decide how I would indicate a cell contained a 'poo', as this is central to entire functionality of the game. The program had to be able to check for the existence of a 'poo' within a given cell, as well as count the number of them in neghboring cells. I opted to use a class to indicate a given grid cell contained a poo. As the process of planting the grid required and created an array containing the locations, this might not exactly be the DRYest method, however, in my opinion it made the functions discussed next more semantic.
+
+Once the basic layout was complete, I needed to plan for and create the Event Listeners that would make the game playable for a user. Though a shortlist of 4, they are supported by 20+ functions to account for the appropriate response (or lack of response) when the user clicks on a cell, selects a difficulty, resets or restarts the game, uses the Bag feature and of course to check for a losing click or a successfully completed game.
+
+Once I had the functionality complete, I was able to add a few extras including differing difficulty levels, sound effects, and styling.
+***
+## Challenges
+Many of the biggest challanges I encountered related to handling layout of the grid, buttons and the intro form. Using *flex* in CSS made this significanly easier, but a challenge for me all the same. A lot of trial and error took place until I was happy with layouts. 
+
+A functional challenge I encountered involved animating a 'div' based on conditional logic. I had created the animation as a CSS class, which could be added/removed from the 'div'. The challenge was that once added, I could not re-add to fire the animation when desired. Removing it and adding it in the same function was not a solution as once the function returned the final state would not be changed. I finally realized a setTimeout would do the trick.
+
+One more notable challenge was validating neighbors & tracking those that had been 'checked' Though many cells had the full 8 neighbors, I needed to ensure I was validating them before the script would check for the presense of a 'poo' to avoid any undefined issues. In addition, I needed to note which cells had been checked or my recursive check feature would lead to a Stack Overflow.

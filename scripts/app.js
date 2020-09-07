@@ -267,10 +267,10 @@ function init () {
     event.preventDefault()
     const cell = event.target
     if (poosToBag > 0) {
-      if (cell.classList.contains('bagged') && !poos.includes(cell.id)) {
+      if (cell.classList.contains('bagged') && !poos.includes(Number(cell.id))) {
         cell.addEventListener('click', regClick)
         poosToBag++
-      } else if (cell.classList.contains('bagged') && poos.includes(cell.id)) {
+      } else if (cell.classList.contains('bagged') && poos.includes(Number(cell.id))) {
         cell.addEventListener('click', youLose)
         poosToBag++
       } else {

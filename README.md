@@ -36,23 +36,19 @@ The project took 7 days from planning to completion.
 
 ***
 ## Process
-The first step was planning the basic layout of the page. A quick wire-frame to determine a rough plan for how many sections/divs the game would require. Given this takes place on a single grid, the advance layout planning was quick and had to modified as additional features came to mind.
+After outling a basic HTML layout for the page and grid, I identified the necessary functions for the landing page and game play. These included:
 
-Once a basic HTML layout was determined, I moved to planning the basic functionality. This was done in handwritten psuedo code and tested in chunks. I decided to start by just creating one 'difficulty' to get all functionality working, and then add in ability to change the grid size and number of 'poos' after I had functioning version. The primary functions to create were:
-
-* Landing form and difficulty select
+* Landing form and, later, a difficulty selection
 * Creation of the grid
 * Planting of the 'poos'
 * Creation of the bag counter
 * Creation of the timer
-* Check cell & neighbors for 'poos'
+* Check clicked cell & neighbors for 'poos'
 * Place bag
 * Win/Lose check
 * Game End & Reset
 
-When planning the above functionality, I needed to decide how I would indicate a cell contained a 'poo', as this is central to the entire functionality of the game. The program had to be able to check for the existence of a 'poo' within a given cell, as well as count the number of them in neghboring cells. I opted to use an HTML class to indicate a given grid cell contained a poo. As my process of planting the grid required gernerating an array containing the locations, I acknowledge this may not be completely DRY. I will likely go back to refactor to use a check for the presence in the array vs the presence of a class. The way it has been done initially, in my opinion, allowed for a little more readable code.
-
-Once the basic layout was complete, I needed to plan for and create the Event Listeners that would make the game playable for a user. Though a shortlist of 4, they are supported by 20+ functions to account for the appropriate response (or lack of response) when the user clicks on a cell, selects a difficulty, resets or restarts the game, uses the Bag feature and of course to check for a losing click or a successfully completed game.
+Once the basic layout was complete, I needed to plan for and create the Event Listeners that would make the game playable for a user. Four event listeners are supported by 20+ functions to account for the appropriate response (or lack of response) when the user clicks on a cell, selects a difficulty, resets or restarts the game, uses the 'bagging' feature and of course to check for a losing click or a successfully completed game.
 
 Once I had the functionality complete, I was able to add a few extras including differing difficulty levels, sound effects, and styling.
 ***

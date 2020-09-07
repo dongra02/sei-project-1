@@ -175,7 +175,6 @@ function init () {
   function assignPooClick () {
     poos.forEach(poo => {
       cells[poo].addEventListener('click', youLose)
-      cells[poo].classList.add('poo')
     })
   }
 
@@ -268,10 +267,10 @@ function init () {
     event.preventDefault()
     const cell = event.target
     if (poosToBag > 0) {
-      if (cell.classList.contains('bagged') && !cell.classList.contains('poo')) {
+      if (cell.classList.contains('bagged') && !poos.includes(cell.id)) {
         cell.addEventListener('click', regClick)
         poosToBag++
-      } else if (cell.classList.contains('bagged') && cell.classList.contains('poo')) {
+      } else if (cell.classList.contains('bagged') && poos.includes(cell.id)) {
         cell.addEventListener('click', youLose)
         poosToBag++
       } else {
@@ -281,10 +280,10 @@ function init () {
       }
       cell.classList.toggle('bagged')
     } else if (poosToBag === 0 && cell.classList.contains('bagged')){
-      if (!cell.classList.contains('poo')) {
+      if (!poos.includes(cell.id)) {
         cell.addEventListener('click', regClick)
         poosToBag++
-      } else if (cell.classList.contains('poo')) {
+      } else if (poos.includes(cell.id)) {
         cell.addEventListener('click', youLose)
         poosToBag++
       }

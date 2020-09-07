@@ -24,15 +24,16 @@ As soon as a cell containing a poo is clicked, the player has lost. The timer en
 * Use Javascript for DOM manipulation
 * Deploy your game online, where the rest of the world can access it
 * Use semantic markup for HTML and CSS (adhere to best practices)
-***
+
+## Timeframe
+The project took 7 days from planning to completion.
+
 ## Technologies Used
 * JavaScript
 * HTML5 with audio
 * CSS3 with animation
 * Git + Github
-***
-## Timeframe
-The project took 7 days from planning to completion.
+
 ***
 ## Process
 The first step was planning the basic layout of the page. A quick wire-frame to determine a rough plan for how many sections/divs the game would require. Given this takes place on a single grid, the advance layout planning was quick and had to modified as additional features came to mind.

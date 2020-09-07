@@ -1,4 +1,4 @@
-# ***Don't Get Poo on Your Shoe*** SEI-Project-1
+# SEI50 Project 1 - ***Don't Get Poo on Your Shoe***
 
 ## Game Outline
 Don't Get Poo on Your Shoe is designed to replicate Minesweeper, with a silly theme. The game takes place on a grid, in this case a 'lawn.' The objective is to clear the lawn by clicking grid cells, while avoiding clicking cell containing a mine ('poo'). The first click will always be safe, and will reveal information related to the quantity of poos contained by the clicked item's neighboring cells. Neighbors include cells directly above, both sides, below as well as corners. Thus a cell can have a maximimum of 8 neighbors, though cells along the border will have fewer. Upon clicking, the cell will change color and include a number to indicate how many neighboring cells contain a poo. If a cell has no neighbors containing a poo, it changes color to indicate it's been cleared and any previously unchecked neighboring cells are checked in the same way. The process recurses after reach click through any uncleared neighbors until none are free of neighbors containing poos. Using the numbers provided upon checking, a player can often deduce which cells likely contain a poo. By left clicking, the player can 'bag' the poo. This will lock the cell so the player can't accidentally click on it. This can be undone by left-clicking a cell with a bag. A seconds timer begins on the first click and ends upon losing or winning. Simliar to classic Minesweeper, Don't Get Poo On Your Shoe offers 3 difficulty levels:
@@ -38,13 +38,19 @@ The project took 7 days from planning to completion.
 ## Process
 The first step was planning the basic layout of the page. A quick wire-frame to determine a rough plan for how many sections/divs the game would require. Given this takes place on a single grid, the advance layout planning was quick and had to modified as additional features came to mind.
 
-Once a basic HTML layout was determined, I moved to planning the basic beginning functionality. This was done in handwritten psuedo code and tested in chunks. I decided to start by just creating one 'difficulty' to get all functionality working, and then add in ability to change the size and number of 'poos' after I had functioning version. The first functions to create were:
-* Creation of the Grid
-* Planting of the 'Poos'
-* Creation of the Bag Counter
-* Creation of the Timer
+Once a basic HTML layout was determined, I moved to planning the basic functionality. This was done in handwritten psuedo code and tested in chunks. I decided to start by just creating one 'difficulty' to get all functionality working, and then add in ability to change the grid size and number of 'poos' after I had functioning version. The primary functions to create were:
 
-When planning the above functionality, I needed to decide how I would indicate a cell contained a 'poo', as this is central to entire functionality of the game. The program had to be able to check for the existence of a 'poo' within a given cell, as well as count the number of them in neghboring cells. I opted to use a class to indicate a given grid cell contained a poo. As the process of planting the grid required and created an array containing the locations, this might not exactly be the DRYest method, however, in my opinion it made the functions discussed next more semantic.
+* Landing form and difficulty select
+* Creation of the grid
+* Planting of the 'poos'
+* Creation of the bag counter
+* Creation of the timer
+* Check cell & neighbors for 'poos'
+* Place bag
+* Win/Lose check
+* Game End & Reset
+
+When planning the above functionality, I needed to decide how I would indicate a cell contained a 'poo', as this is central to the entire functionality of the game. The program had to be able to check for the existence of a 'poo' within a given cell, as well as count the number of them in neghboring cells. I opted to use an HTML class to indicate a given grid cell contained a poo. As my process of planting the grid required gernerating an array containing the locations, I acknowledge this may not be completely DRY. I will likely go back to refactor to use a check for the presence in the array vs the presence of a class. The way it has been done initially, in my opinion, allowed for a little more readable code.
 
 Once the basic layout was complete, I needed to plan for and create the Event Listeners that would make the game playable for a user. Though a shortlist of 4, they are supported by 20+ functions to account for the appropriate response (or lack of response) when the user clicks on a cell, selects a difficulty, resets or restarts the game, uses the Bag feature and of course to check for a losing click or a successfully completed game.
 
@@ -55,4 +61,11 @@ Many of the biggest challanges I encountered related to handling layout of the g
 
 A functional challenge I encountered involved animating a 'div' based on conditional logic. I had created the animation as a CSS class, which could be added/removed from the 'div'. The challenge was that once added, I could not re-add to fire the animation when desired. Removing it and adding it in the same function was not a solution as once the function returned the final state would not be changed. I finally realized a setTimeout would do the trick.
 
-One more notable challenge was validating neighbors & tracking those that had been 'checked' Though many cells had the full 8 neighbors, I needed to ensure I was validating them before the script would check for the presense of a 'poo' to avoid any undefined issues. In addition, I needed to note which cells had been checked or my recursive check feature would lead to a Stack Overflow.
+One more notable challenge was validating neighbors & tracking those that had been 'checked.' Though many cells had the full 8 neighbors, I needed to ensure I was validating them before the script would check for the presense of a 'poo' to avoid any undefined issues. In addition, I needed to note which cells had been checked or my recursive check feature would lead to a Stack Overflow.
+## Win
+I was able to use recursion in the primary function of the game, (paste code here). On each click, I needed the process to recursively:
+1. Check the valid neighbors of a cell for a 'poo'
+2. Tally the number containing 'poos'
+3. Color code that number
+4. Insert that into the target cell innerHTML
+5. Repeat on any neighboring cell that had no neighboring cells containing 'poos' and had not already been checked.

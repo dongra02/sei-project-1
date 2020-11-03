@@ -1,4 +1,4 @@
-# SEI50 Project 1 - ***Don't Get Poo on Your Shoe***
+# SEI50 Project - ***Don't Get Poo on Your Shoe***
 
 ## Game Outline
 Don't Get Poo on Your Shoe is designed to replicate Minesweeper, with a silly theme. The game takes place on a grid, in this case a 'lawn.' The objective is to clear the lawn by clicking grid cells, while avoiding clicking cell containing a mine ('poo'). The first click will always be safe, and will reveal information related to the quantity of poos contained by the clicked item's neighboring cells. Neighbors include cells directly above, both sides, below as well as corners. Thus a cell can have a maximimum of 8 neighbors, though cells along the border will have fewer. Upon clicking, the cell will change color and include a number to indicate how many neighboring cells contain a poo. If a cell has no neighbors containing a poo, it changes color to indicate it's been cleared and any previously unchecked neighboring cells are checked in the same way. The process recurses after reach click through any uncleared neighbors until none are free of neighbors containing poos. Using the numbers provided upon checking, a player can often deduce which cells likely contain a poo. By left clicking, the player can 'bag' the poo. This will lock the cell so the player can't accidentally click on it. This can be undone by left-clicking a cell with a bag. A seconds timer begins on the first click and ends upon losing or winning. Simliar to classic Minesweeper, Don't Get Poo On Your Shoe offers 3 difficulty levels:
@@ -8,6 +8,11 @@ Don't Get Poo on Your Shoe is designed to replicate Minesweeper, with a silly th
 * *Medium:* 16 x 16 grid, with 40 poos placed randomly.
 
 * *Hard:* 30 x 16 grid, with 99 poos placed randomly.
+
+<p align='center'>
+  <img src='./images/screenShot2.jpg' height=200 align='center'>
+  <img src='./images/screenShot.jpg' height=200 align='center'>
+</p>
 
 ### Win
  A player wins after all cells have been cleared, with the exception of those containing poos. It is not required to bag any/all poos, the feature is there to simply make it easier to quickly click safe cells once poos are identified. An 'appluase' sound effect is heard if the users volume is enabled.
@@ -59,7 +64,7 @@ A functional challenge I encountered involved animating a 'div' based on conditi
 
 One more notable challenge was validating neighbors & tracking those that had been 'checked.' Though many cells had the full 8 neighbors, I needed to ensure I was validating them before the script would check for the presense of a 'poo' to avoid any undefined issues. In addition, I needed to note which cells had been checked or my recursive check feature would lead to a Stack Overflow.
 ## Win
-I was able to use recursion in the primary function of the game, (paste code here). On each click, I needed the process to recursively:
+I was able to use recursion in the primary function of the game. On each click, I needed the process to recursively:
 1. Check the valid neighbors of a cell for a 'poo'
 2. Tally the number containing 'poos'
 3. Color code that number

@@ -53,20 +53,4 @@ After outling a basic HTML layout for the page and grid, I identified the necess
 * Win/Lose check
 * Game End & Reset
 
-Once the basic layout was complete, I needed to plan for and create the Event Listeners that would make the game playable for a user. Four event listeners are supported by 20+ functions to account for the appropriate response (or lack of response) when the user clicks on a cell, selects a difficulty, resets or restarts the game, uses the 'bagging' feature and of course to check for a losing click or a successfully completed game.
-
-Once I had the functionality complete, I was able to add a few extras including differing difficulty levels, sound effects, and styling.
-***
-## Challenges
-Many of the biggest challanges I encountered related to handling layout of the grid, buttons and the intro form. Using *flex* in CSS made this significanly easier, but a challenge for me all the same. A lot of trial and error took place until I was happy with layouts. 
-
-A functional challenge I encountered involved animating a 'div' based on conditional logic. I had created the animation as a CSS class, which could be added/removed from the 'div'. The challenge was that once added, I could not re-add to fire the animation when desired. Removing it and adding it in the same function was not a solution as once the function returned the final state would not be changed. I finally realized a setTimeout would do the trick.
-
-One more notable challenge was validating neighbors & tracking those that had been 'checked.' Though many cells had the full 8 neighbors, I needed to ensure I was validating them before the script would check for the presense of a 'poo' to avoid any undefined issues. In addition, I needed to note which cells had been checked or my recursive check feature would lead to a Stack Overflow.
-## Win
-I was able to use recursion in the primary function of the game. On each click, I needed the process to recursively:
-1. Check the valid neighbors of a cell for a 'poo'
-2. Tally the number containing 'poos'
-3. Color code that number
-4. Insert that into the target cell innerHTML
-5. Repeat on any neighboring cell that had no neighboring cells containing 'poos' and had not already been checked.
+With the layout complete, I added the event listeners and necessary functions to make a playable game and to incorporate the necessary styling updates for the user to understand what is happening. I was able to create a recursive function to handle the bulk of the gameplay functionality. Finally, I used the remaining time to add extras like audio, animations and difficulty levels for the user to select.

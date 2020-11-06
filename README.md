@@ -9,11 +9,6 @@ Don't Get Poo on Your Shoe is designed to replicate Minesweeper, with a silly th
 
 * *Hard:* 30 x 16 grid, with 99 poos placed randomly.
 
-<p align='center'>
-  <img src='./images/screenShot2.jpg' height=200 align='center'>
-  <img src='./images/screenShot.jpg' height=200 align='center'>
-</p>
-
 ### Win
  A player wins after all cells have been cleared, with the exception of those containing poos. It is not required to bag any/all poos, the feature is there to simply make it easier to quickly click safe cells once poos are identified. An 'applause' sound effect is heard if the users volume is enabled.
 
@@ -55,7 +50,13 @@ After outlining a basic HTML layout for the page and grid, I identified the basi
 
 With the foundation planned and the basic HTML layout in mind, I created the function to set up the grid itself. Initially, the size was hardcoded. I would later add the ability for the user to select the size and quantity of mines before playing. I next needed to add the event listeners and necessary functions to make a playable game. 
 
-A key step in the DOM manipulation was incorporating styling updates that would ensure the user understands what is happening as they interact with the game. I achieved this through a combination of specific functions and a recursive function to handle the bulk of the gameplay. Upon each click, the program will check the clicked cell and its neighbors for the presence of a game ending 'poo'. Neighbors include cells directly above, both sides, below as well as corners, meaning a cell can have a up to 8 neighbors. The clicked cell will change color and include a number to indicate how many neighboring cells contain a 'poo'. If a cell has no neighbors containing a 'poo,' the process recurses through each of its neighbors. To ensure the first click is always safe, it was necessary to use that event to trigger the random placement of 'poos' within the grid before beginning the process of checking neighbors.
+A key step in the DOM manipulation was incorporating styling updates that would ensure the user understands what is happening as they interact with the game. I achieved this through a combination of specific functions and a recursive function to handle the bulk of the gameplay. Upon each click, the program will check the clicked cell and its neighbors for the presence of a game ending 'poo'. Neighbors include cells directly above, both sides, below as well as corners, meaning a cell can have a up to 8 neighbors. The clicked cell will change color and include a number to indicate how many neighboring cells contain a 'poo'. If a cell has no neighbors containing a 'poo,' the process recurses through each of its neighbors.
+
+<p align='center'>
+<img src='./images/screenShot.jpg' height=400/>
+</p>
+
+To ensure the first click is always safe, it was necessary to use that event to trigger the random placement of 'poos' within the grid before beginning the process of checking neighbors.
 
 ``` python
 function firstClick () {
@@ -73,5 +74,9 @@ function firstClick () {
   }
 ```
 
-With a functioning version of Minesweeper, I used the remaining time to add extra features to make it a more complete experience for the user. These included audio, animations and difficulty levels for the user to select. 
+With a functioning version of Minesweeper, I used the remaining time to add extra features to make it a more complete experience for the user. These included audio, animations and difficulty levels for the user to select.
+
+<p align='center'>
+  <img src='./images/screenShot2.jpg' height=400>
+</p>
 

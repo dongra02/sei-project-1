@@ -58,7 +58,7 @@ A key step in the DOM manipulation was incorporating styling updates that would 
 
 To ensure the first click is always safe, it was necessary to use that event to trigger the random placement of 'poos' within the grid before beginning the process of checking neighbors.
 
-``` python
+``` javascript
 function firstClick () {
     const firstCellNum = Number(event.target.id)
     plantPoos(firstCellNum)
@@ -80,3 +80,6 @@ With a functioning version of Minesweeper, I used the remaining time to add extr
   <img src='./images/screenShot2.jpg' height=400>
 </p>
 
+## Wins & Challenges
+
+Laying out the game was fairly straightforward; however, the rules and game play were deceivingly simple. On each click, the game had to evaluate neighbors recursively, removing event listeners, adjusting styles and updating a counter to indicate neighboring mines. Accounting for all these tasks, while ensuring the function wasn't 'wrapping' on edges or going beyond the bounds of the grid proved to be a fun challenge. That accounted for the bulk of the problem solving, with the much of the rest coming in the way of animations and styling.

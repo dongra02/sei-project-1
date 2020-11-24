@@ -15,6 +15,8 @@ Don't Get Poo on Your Shoe is designed to replicate Minesweeper, with a silly th
 ### Lose
 As soon as a cell containing a poo is clicked, the player has lost. The timer ends and is accompanied by a sound effect.
 
+#### [Play the Game!](https://dongra02.github.io/sei-project-1/)
+
 ***
 ## Brief
 * Render a grid-based game in the browser

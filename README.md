@@ -83,3 +83,7 @@ With a functioning version of Minesweeper, I used the remaining time to add extr
 ## Wins & Challenges
 
 Laying out the game was fairly straightforward; however, the rules and game play were deceivingly simple. On each click, the game had to evaluate neighbors recursively, removing event listeners, adjusting styles and updating a counter to indicate neighboring mines. Accounting for all these tasks, while ensuring the function wasn't 'wrapping' on edges or going beyond the bounds of the grid proved to be a fun challenge. That accounted for the bulk of the problem solving, with the much of the rest coming in the way of animations and styling.
+
+## Key Takeaways
+
+This was my first project using flex in CSS to layout the site. That really cut down on time spent styling and position the different elements of the game. In addition, I feel it was a good exercise in basic DOM manipulation.
